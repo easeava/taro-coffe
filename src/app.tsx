@@ -1,10 +1,9 @@
 /* eslint-disable react/sort-comp */
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
-
 import Index from './pages/index/home'
-
 import configStore from './store'
+import { changeScene, getSysteminfo, getCapsule } from './actions/app'
 
 import './app.scss'
 
@@ -87,7 +86,10 @@ class App extends Component {
   componentDidMount () {}
 
   componentDidShow () {
-    console.log(this.$router.params)
+    const { scene } = this.$router.params
+    store.dispatch(changeScene(scene))
+    store.dispatch(getSysteminfo())
+    store.dispatch(getCapsule())
   }
 
   componentDidHide () {}

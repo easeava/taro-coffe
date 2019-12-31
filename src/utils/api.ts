@@ -5,6 +5,13 @@ interface RequestFunc {
   (path: string, data?: object, method?: keyof Taro.request.method, loading?: boolean): Promise<{}>
 }
 
+interface Options {
+  url: string,
+  data: object,
+  header: object,
+  method: keyof Taro.request.method
+}
+
 const request: RequestFunc = (path, data = {}, method = 'POST', loading = true) => {
   return new Promise(async (resolve, reject) => {
     const url = config.api.domain + path
@@ -15,14 +22,15 @@ const request: RequestFunc = (path, data = {}, method = 'POST', loading = true) 
     })
 
     try {
-      const response = await Taro.request({
+      const options: Options = {
         url,
         data,
         header: {},
         method
-      })
+      }
+      const response = await Taro.request(options)
 
-      config.api.debug && console.log(`请求参数：`, data,  `返回结果：`, response)
+      config.api.debug && console.log(`请求参数：`, options,  `返回结果：`, response)
       loading && Taro.hideLoading()
       resolve(response.data)
     } catch (error) {

@@ -6,8 +6,12 @@ import { View, Swiper, SwiperItem, Image } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
 import classNames from 'classnames'
 import { connect } from '@tarojs/redux'
-import { changeScene } from '../../actions/app'
 import * as api from '../../utils/api'
+import Recommend from '../../components/pages/index/recommend'
+import News from '../../components/pages/index/news'
+import Pop from '../../components/pages/index/pop'
+
+
 
 import './home.scss'
 
@@ -23,14 +27,18 @@ const loop = e => e.stopPropagation()
 //
 // #endregion
 
+interface SectionProps {
+  title: string,
+  data: Array<any>
+}
+
 type PageStateProps = {
   app: {
-    scene: string
+    capsule: any
   }
 }
 
 type PageDispatchProps = {
-  changeScene: (object) => any
 }
 
 type PageOwnProps = {}
@@ -40,7 +48,11 @@ type PageState = {
   autoplay: boolean,
   interval: number,
   duration: number,
-  banners: string[]
+  banners: Array<{
+    id: string | number,
+    clickUrl: string,
+    sourceUrl: string
+  }>
 }
 
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps
@@ -51,12 +63,9 @@ interface Index {
 
 @connect(({ app }) => ({
   app
-}), (dispatch) => ({
-  changeScene (data) {
-    dispatch(changeScene(data))
-  }
+}), () => ({
 }))
-class Index extends Component<IProps, PageState> {
+class Index extends Component<PageOwnProps, PageState> {
 
     /**
    * 指定config的类型声明为: Taro.Config
@@ -76,7 +85,6 @@ class Index extends Component<IProps, PageState> {
   componentWillUnmount () { }
 
   componentDidShow () {
-    
     this.requestPage()
   }
 
@@ -148,8 +156,15 @@ class Index extends Component<IProps, PageState> {
     </View>
   }
 
+  // Banner
   renderBanner () {
     const { autoplay, duration, interval, banners } = this.state
+
+    const images = banners.map((item: any) => {
+      return <SwiperItem key={item.id}>
+        <Image className={classNames('banner-image')} src={item.sourceUrl} />
+      </SwiperItem>
+    })
 
     return <View className='banner-box'>
       <View className='banner-radius'>
@@ -162,20 +177,88 @@ class Index extends Component<IProps, PageState> {
           interval={interval}
           autoplay={autoplay}
         >
-          {banners.map((item: any) => {
-            return <SwiperItem key={item.id}>
-              <Image className={classNames('banner-image')} src={item.sourceUrl} />
-            </SwiperItem>
-          })}
+          {images}
         </Swiper>
       </View>
     </View>
   }
 
+  // Menu
+  renderMenuBox () {
+    const prefix: string = 'list-new-'
+    const prefixClass = (name, other = '') => classNames(prefix + name, other)
+
+    return <View className={prefixClass('box')}>
+      <View className={prefixClass('bar')}>
+        <View className={prefixClass('menu')}>
+          <View className={prefixClass('menu__left', 'position-relative')}>
+            <View className={prefixClass('menu__item')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_home_ad_menu.png')">
+              <View className={prefixClass('menu__item-title')}>现在下单</View>
+              <View className={prefixClass('menu__item-subtitle')}>ORDER NOW</View>
+            </View>
+          </View>
+          <View className={prefixClass('menu__right', 'position-relative')}>
+            <View className={prefixClass('menu__item')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_home_ad_wallet.png')">
+              <View className={prefixClass('menu__item-tip')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_concern.png')">充2赠1</View>
+              <View className={prefixClass('menu__item-title')}>咖啡钱包</View>
+              <View className={prefixClass('menu__item-subtitle')}>COFFEE WALLET</View>
+            </View>
+          </View>
+        </View>
+        <View className={prefixClass('menu-more')}>
+          <View className={prefixClass('menu-more__item')}>
+            <View className={prefixClass('menu__item')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_home_ad_coupon.png')">
+              <View className={prefixClass('menu__item-title')}>我的优惠券</View>
+              <View className={prefixClass('menu__item-subtitle')}>MY COUPONS</View>
+            </View>
+          </View>
+          <View className={prefixClass('menu-more__item')}>
+            <View className={prefixClass('menu__item')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_home_ad_send.png')">
+              <View className={prefixClass('menu__item-title')}>送TA咖啡</View>
+              <View className={prefixClass('menu__item-subtitle')}>SEND COFFEE</View>
+            </View>
+          </View>
+          <View className={prefixClass('menu-more__item')}>
+            <View className={prefixClass('menu__item')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_home_ad_pop.png')">
+              <View className={prefixClass('menu__item-title')}>瑞幸潮品</View>
+              <View className={prefixClass('menu__item-subtitle')}>LUCKIN POP</View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  }
+
+  async renderSectionSortShow () {
+    const data: SectionProps = {
+      title: '测试',
+      data: [1,2,3]
+    }
+    const section = ['recommend', 'pop', 'news'].map((item) => {
+      switch (item) {
+        case 'recommend': {
+          return <Recommend {...data} key={item} />
+        }
+        case 'news': {
+          return <News {...data} key={item} />
+        }
+        case 'pop': {
+          return <Pop {...data} key={item} />
+        }
+      }
+    })
+
+    return section
+  }
+
   render () {
+    const { capsule } = this.props.app
+
     return (
-      <View className='page home'>
+      <View className='page home' style={capsule ? 'padding-top:' + (capsule.top + capsule.height) + 'px' : ''}>
         {this.renderBanner()}
+        {this.renderMenuBox()}
+        {this.renderSectionSortShow()}
       </View>
     )
   }

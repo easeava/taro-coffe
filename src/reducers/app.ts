@@ -1,17 +1,32 @@
 import {
   SCENE,
-  OPENID
+  OPENID,
+  SYSTEMINFO,
+  CAPSULE
 } from '../constants/app'
 
 const INITIAL_STATE = {
   scene: '',
-  openid: ''
+  openid: '',
+  systeminfo: {},
+  capsule: {}
 }
 
 export default function app (state = INITIAL_STATE, action) {
   switch (action.type) {
+    case SYSTEMINFO:
+      const { systeminfo } = action.payload
+      return {
+        ...state,
+        systeminfo: systeminfo
+      }
+    case CAPSULE:
+      const { capsule } = action.payload
+      return {
+        ...state,
+        capsule
+      }
     case SCENE:
-      console.log('asd', action)
       return {
         ...state,
         scene: action.payload
