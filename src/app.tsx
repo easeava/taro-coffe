@@ -39,7 +39,7 @@ class App extends Component {
       navigationBarTextStyle: 'black',
       enablePullDownRefresh: false,
       backgroundColor: '#fff',
-      navigationStyle: 'custom'
+      navigationStyle: 'default'
     },
     tabBar: {
       color: '#666',

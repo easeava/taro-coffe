@@ -8,7 +8,7 @@ import classNames from 'classnames'
 import { connect } from '@tarojs/redux'
 import * as api from '../../utils/api'
 import Recommend from '../../components/pages/index/recommend'
-import News from '../../components/pages/index/news'
+import New from '../../components/pages/index/new'
 import Pop from '../../components/pages/index/pop'
 
 
@@ -75,7 +75,8 @@ class Index extends Component<PageOwnProps, PageState> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '首页',
+    navigationStyle: 'custom'
   }
 
   componentWillReceiveProps (nextProps) {
@@ -229,20 +230,54 @@ class Index extends Component<PageOwnProps, PageState> {
     </View>
   }
 
-  async renderSectionSortShow () {
-    const data: SectionProps = {
-      title: '测试',
-      data: [1,2,3]
-    }
-    const section = ['recommend', 'pop', 'news'].map((item) => {
+  renderSectionSortShow () {
+    
+    const section = ['recommend', 'new', 'pop'].map((item) => {
       switch (item) {
         case 'recommend': {
+          const data: SectionProps = {
+            title: '为你推荐',
+            data: [{
+              name: '焦糖玛奇朵',
+              enName: 'Caramel Macchiato',
+              initialPrice: 27,
+              discountPrice: 27
+            }, {
+              name: '焦糖玛奇朵',
+              enName: 'Caramel Macchiato',
+              initialPrice: 10,
+              discountPrice: 27
+            }, {
+              name: '焦糖玛奇朵',
+              enName: 'Caramel Macchiato',
+              initialPrice: 27,
+              discountPrice: 27
+            }]
+          }
           return <Recommend {...data} key={item} />
         }
-        case 'news': {
-          return <News {...data} key={item} />
+        case 'new': {
+          const data: SectionProps = {
+            title: '新鲜事',
+            data: [{
+              sourceUrl: 'https://img04.luckincoffeecdn.com/group1/M01/F2/B5/CtQLO125sfKAE5IhAAJpP9n8b8w670.jpg'
+            }, {
+              sourceUrl: 'https://img04.luckincoffeecdn.com/group1/M01/31/07/CtQLO14LZt-ATvs5AACoygvNv0Q03.jpeg'
+            }, {
+              sourceUrl: 'https://img04.luckincoffeecdn.com/group1/M01/31/07/CtQLO14LZ4-AEknYAAUltHq0eB0693.jpg'
+            }, {
+              sourceUrl: 'https://img04.luckincoffeecdn.com/group1/M01/2B/FF/CtQLPF4KyXKAMzv0AAGNdFhJkJA349.png'
+            }, {
+              sourceUrl: 'https://img04.luckincoffeecdn.com/group1/M01/AD/84/CtQLPF3tzGaAXyieAAVTCCN-fDY930.jpg'
+            }]
+          }
+          return <New {...data} key={item} />
         }
         case 'pop': {
+          const data: SectionProps = {
+            title: '测试',
+            data: [1,2,3]
+          }
           return <Pop {...data} key={item} />
         }
       }

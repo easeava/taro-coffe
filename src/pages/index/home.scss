@@ -22,6 +22,16 @@
   background: url(https://static.luckincoffeecdn.com/mini/images/home/ico_home_top_bg_new.png) top left no-repeat #f5f5f5;
   background-size: 100% 580rpx;
   box-sizing: border-box;
+
+  .title {
+    display: flex;
+    margin-bottom: 8rpx;
+    padding-left: 20rpx;
+    font-size: 34rpx;
+    color: #333;
+    font-family: PingFangSC-Regular;
+    line-height: 48rpx;
+  }
 }
 
 // Banner
