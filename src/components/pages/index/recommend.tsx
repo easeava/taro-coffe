@@ -30,7 +30,7 @@ class Index extends Component<PageOwnProps, PageState> {
           {data.map(item => {
             return <View className='d-flex flex-column product-section' key={item.id}>
               <View className='product-head position-relative'>
-                <Image className='product-img' src='https://img04.luckincoffeecdn.com/group1/M00/3A/93/CtQLPFzO7Z-APFYZAALppw4chyY605.jpg' />
+                <Image className='product-img' src='https://images.ease.smhx.net/CtQLPFzO7Z-APFYZAALppw4chyY605.jpg' />
                 <View className='product-title'>
                   <View className='name text-ellipsis'>{item.name}</View>
                   <View className='subname text-ellipsis'>{item.enName}</View>
@@ -45,7 +45,7 @@ class Index extends Component<PageOwnProps, PageState> {
                     ￥<Text className='line-price'>{item.initialPrice}</Text>
                   </Text>
                 </View>}
-                <Image className='add' src='https://static.luckincoffeecdn.com/mini/images/common/ico_add_coffee.png' />
+                <Image className='add' src='https://images.ease.smhx.net/ico_add_coffee.png' />
               </View>
             </View>
           })}

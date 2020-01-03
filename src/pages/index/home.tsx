@@ -193,14 +193,14 @@ class Index extends Component<PageOwnProps, PageState> {
       <View className={prefixClass('bar')}>
         <View className={prefixClass('menu')}>
           <View className={prefixClass('menu__left', 'position-relative')}>
-            <View className={prefixClass('menu__item')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_home_ad_menu.png')">
+            <View className={prefixClass('menu__item')} style="background-image: url('https://images.ease.smhx.net/ico_home_ad_menu.png')">
               <View className={prefixClass('menu__item-title')}>现在下单</View>
               <View className={prefixClass('menu__item-subtitle')}>ORDER NOW</View>
             </View>
           </View>
           <View className={prefixClass('menu__right', 'position-relative')}>
-            <View className={prefixClass('menu__item')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_home_ad_wallet.png')">
-              <View className={prefixClass('menu__item-tip')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_concern.png')">充2赠1</View>
+            <View className={prefixClass('menu__item')} style="background-image: url('https://images.ease.smhx.net/ico_home_ad_wallet.png')">
+              <View className={prefixClass('menu__item-tip')} style="background-image: url('https://images.ease.smhx.net/ico_concern.png')">充2赠1</View>
               <View className={prefixClass('menu__item-title')}>咖啡钱包</View>
               <View className={prefixClass('menu__item-subtitle')}>COFFEE WALLET</View>
             </View>
@@ -208,19 +208,19 @@ class Index extends Component<PageOwnProps, PageState> {
         </View>
         <View className={prefixClass('menu-more')}>
           <View className={prefixClass('menu-more__item')}>
-            <View className={prefixClass('menu__item')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_home_ad_coupon.png')">
+            <View className={prefixClass('menu__item')} style="background-image: url('https://images.ease.smhx.net/ico_home_ad_coupon.png')">
               <View className={prefixClass('menu__item-title')}>我的优惠券</View>
               <View className={prefixClass('menu__item-subtitle')}>MY COUPONS</View>
             </View>
           </View>
           <View className={prefixClass('menu-more__item')}>
-            <View className={prefixClass('menu__item')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_home_ad_send.png')">
+            <View className={prefixClass('menu__item')} style="background-image: url('https://images.ease.smhx.net/ico_home_ad_send.png')">
               <View className={prefixClass('menu__item-title')}>送TA咖啡</View>
               <View className={prefixClass('menu__item-subtitle')}>SEND COFFEE</View>
             </View>
           </View>
           <View className={prefixClass('menu-more__item')}>
-            <View className={prefixClass('menu__item')} style="background-image: url('https://static.luckincoffeecdn.com/mini/images/home/ico_home_ad_pop.png')">
+            <View className={prefixClass('menu__item')} style="background-image: url('https://images.ease.smhx.net/ico_home_ad_pop.png')">
               <View className={prefixClass('menu__item-title')}>瑞幸潮品</View>
               <View className={prefixClass('menu__item-subtitle')}>LUCKIN POP</View>
             </View>
@@ -275,7 +275,7 @@ class Index extends Component<PageOwnProps, PageState> {
         }
         case 'pop': {
           const data: SectionProps = {
-            title: '测试',
+            title: '瑞幸潮品',
             data: [1,2,3]
           }
           return <Pop {...data} key={item} />

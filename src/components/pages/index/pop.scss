@@ -28,4 +28,106 @@
     margin-bottom: 10rpx;
     border-radius: 8rpx;
   }
+
+  .pop-head {
+    position: relative;
+    width: 100%;
+    height: 252rpx;
+    border-top-left-radius: 8rpx;
+    border-top-right-radius: 8rpx;
+  }
+
+  .pop-img {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 8rpx;
+    border-top-right-radius: 8rpx;
+  }
+
+  .pop-body {
+    padding: 20rpx;
+    text-align: left;
+
+    .name {
+      margin-bottom: 10rpx;
+      line-height: 34rpx;
+      font-size: 24rpx;
+      color: #333;
+      font-family: PingFangSC-Regular;
+    }
+    
+
+    .already-sold {
+      color: #999;
+      font-size: 22rpx;
+    }
+  }
+
+  .price {
+    line-height: 44rpx;
+    font-size: 32rpx;
+    color: #333;
+    font-weight: PingFangSC-Medium;
+
+    &.new {
+      color: #E06E11;
+    }
+  }
+
+  .old-price {
+    margin-left: 18rpx;
+    text-decoration: line-through;
+    color: #999;
+    font-size: 24rpx;
+  }
+
+  .sale-style {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding-left: 50rpx;
+    width: 100%;
+    height: 44rpx;
+    line-height: 44rpx;
+    color: #fff;
+    font-size: 22rpx;
+    display: flex;
+    box-sizing: border-box;
+
+    text {
+      padding-right: 10rpx;
+    }
+  }
+
+  .advance-sale {
+    background-color: #7CA7D2;
+  }
+
+  .on-sale {
+    background-color: #E06E11;
+  }
+
+  .add-cart {
+    width: 36rpx;
+    height: 36rpx;
+
+    image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .sell-out {
+    margin-top: -4rpx;
+    width: 64rpx;
+    height: 36rpx;
+    line-height: 36rpx;
+    color: #999;
+    font-size: 24rpx;
+    background-color: #e5e5e5;
+    border-radius: 4rpx;
+    text-align: center;
+    font-family: PingFangSC-Regular;
+  }
+
 }
