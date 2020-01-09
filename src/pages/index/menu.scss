@@ -1,0 +1,275 @@
+.menu {
+  width: 100vw;
+  height: 100vh;
+}
+
+.banner-section {
+  width: 100%;
+  height: 240rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  .swiper-section {
+    height: 100%;
+  }
+
+  .swiper-image {
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    height: 240rpx;
+  }
+}
+
+.content-section {
+  flex: auto;
+
+  .menu-section {
+    flex: 0 0 180rpx;
+    background: #f6f6f6;
+    display: flex;
+    overflow-x: hidden;
+  }
+
+  .product-section {
+    flex: auto;
+  }
+}
+
+.address-section {
+  padding-top: 35rpx;
+  padding-bottom: 50rpx;
+
+  .at-icon {
+    margin-left: 30rpx;
+    margin-right: 16rpx;
+  }
+
+  .address {
+
+    .detail {
+      font-size: 28rpx;
+      font-weight: bold;
+      color: #333;
+      max-width: 400rpx;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .info {
+      margin-top: 10rpx;
+      font-size: 24rpx;
+      color: #666;
+    }
+  }
+
+  .switch {
+    margin-right: 30rpx;
+    font-size: 28rpx;
+    color: #7ca7d2;
+    border: 2rpx solid #7ca7d2;
+    border-radius: 55rpx;
+    overflow: hidden;
+    padding: 2rpx;
+
+    .switch-label {
+      display: inline-block;
+      width: 80rpx;
+      height: 64rpx;
+      line-height: 64rpx;
+      text-align: center;
+      font-size: 24rpx;
+
+      &.selected {
+        background: #7ca7d2;
+        color: #fff;
+        border-radius: 55rpx;
+      }
+    }
+  }
+}
+
+.content-section {
+  .menu-view {
+    flex: auto;
+
+    .active {
+      background: #fff;
+    }
+  }
+
+  .menu-item {
+    height: 88rpx;
+    color: #999;
+    font-size: 26rpx;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.active {
+      
+      .text {
+        color: #666;
+      }
+    }
+
+    .label {
+      display: block;
+      height: 24rpx;
+      line-height: 24rpx;
+      padding: 0 6rpx 0 8rpx;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 20rpx;
+      overflow: hidden;
+    }
+  }
+}
+
+.product-view {
+  flex: auto;
+}
+
+.product-content {
+  .product-head {
+    padding: 0 24rpx;
+    display: flex;
+    z-index: 1;
+    background: #fff;
+    width: 100%;
+    align-items: center;
+
+    .title-hr {
+      flex: 1;
+      border-bottom: 2rpx solid #f1f1f1;
+    }
+
+    .title-section {
+      .title {
+        font-size: 26rpx;
+        color: #333;
+        background: #fff;
+        margin-right: 8rpx;
+        line-height: 36rpx;
+      }
+    }
+
+    .subtitle-section {
+      .subtitle {
+        font-size: 20rpx;
+        padding-right: 20rpx;
+        color: #999;
+        background: #fff;
+        z-index: 1;
+        line-height: 28rpx;
+        max-width: 400rpx;
+      }
+    }
+  }
+
+  .product-series {
+    font-size: 24rpx;
+    color: #999;
+    font-style: oblique;
+    margin: 8rpx 0 0 20rpx;
+  }
+
+}
+
+.product-item {
+  position: relative;
+  height: 140rpx;
+  padding: 24rpx 0;
+  margin: 0 24rpx;
+  display: flex;
+
+  .product-img-section {
+    flex: 0 0 150rpx;
+    position: relative;
+  }
+
+  .product-img {
+    width: 140rpx;
+    height: 140rpx;
+    border-radius: 4rpx;
+  }
+
+  .product-disc {
+    display: inline;
+    position: absolute;
+    right: 5rpx;
+    bottom: 4rpx;
+    height: 30rpx;
+    font-size: 18rpx;
+    line-height: 30rpx;
+    color: #fff;
+    background: #e06e11;
+    border-radius: 6rpx;
+    text-align: center;
+    padding: 0 8rpx;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .product-ename {
+    color: #999;
+    font-size: 20rpx;
+    line-height: 28rpx;
+    margin-top: 2rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .product-info {
+    margin-left: 6rpx;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+.product-bottom {
+  margin-top: 24rpx;
+  height: 44rpx;
+  width: 100%;
+
+  .product-price {
+    flex: 1;
+    text-align: left;
+    font-size: 24rpx;
+    color: #404040;
+    display: flex;
+    align-items: center;
+
+    .before {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 24rpx;
+    }
+
+    .after {
+      font-size: 32rpx;
+      color: #e16e0f;
+      margin-right: 10rpx;
+
+      .unit {
+        font-size: 24rpx;
+      }
+    }
+  }
+
+  .product-add {
+    display: inline-block;
+    width: 44rpx;
+    height: 44rpx;
+    background: url(https://images.ease.smhx.net/ico_add_coffee.png) center no-repeat;
+    background-size: 40rpx;
+    background-position: 0 0;
+  }
+}

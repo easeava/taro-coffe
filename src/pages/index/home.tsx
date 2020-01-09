@@ -11,8 +11,6 @@ import Recommend from '../../components/pages/index/recommend'
 import New from '../../components/pages/index/new'
 import Pop from '../../components/pages/index/pop'
 
-
-
 import './home.scss'
 
 const loop = e => e.stopPropagation()
@@ -163,7 +161,7 @@ class Index extends Component<PageOwnProps, PageState> {
 
     const images = banners.map((item: any) => {
       return <SwiperItem key={item.id}>
-        <Image className={classNames('banner-image')} src={item.sourceUrl} />
+        <Image className='banner-image' src={item.sourceUrl} />
       </SwiperItem>
     })
 
