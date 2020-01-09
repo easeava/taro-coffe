@@ -98,7 +98,7 @@ class Index extends Component<PageOwnProps, PageState> {
       <View className='menu-section'>
         <ScrollView className='d-flex flex-column menu-view' scrollY>
           <View className='menu-item active'>
-            <View className='text'>人气TOP</View>
+            <View className='text'>人气Top</View>
           </View>
           <View className='menu-item'>
             <View className='text'>大师咖啡</View>
@@ -204,7 +204,7 @@ class Index extends Component<PageOwnProps, PageState> {
             <View className='product-head'>
               <View className='d-flex flex-column head-text'>
                 <View className='d-flex align-items-center mr-3 title-section'>
-                  <Text className='title'>人气TOP</Text>
+                  <Text className='title'>人气Top</Text>
                 </View>
               </View>
               <View className='title-hr'></View>
@@ -409,7 +409,7 @@ class Index extends Component<PageOwnProps, PageState> {
             <View className='product-head'>
               <View className='d-flex flex-column head-text'>
                 <View className='d-flex align-items-center mr-3 title-section'>
-                  <Text className='title'>人气TOP</Text>
+                  <Text className='title'>人气Top</Text>
                 </View>
                 <View className='d-flex align-items-center subtitle-section'>
                   <Text className='subtitle'>描述信息</Text>
