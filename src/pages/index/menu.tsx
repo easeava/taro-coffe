@@ -4,6 +4,7 @@ import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Swiper, SwiperItem, Image, Text, ScrollView } from '@tarojs/components'
 import { AtTag } from 'taro-ui'
+import classNames from 'classnames'
 import * as api from '../../utils/api'
 import './menu.scss'
 
@@ -62,17 +63,11 @@ class Index extends Component<PageOwnProps, PageState> {
 
   renderBanner () {
     const { banners } = this.state
-    const images = banners.map((item: any) => {
+    return banners.map((item: any) => {
       return <SwiperItem key={item.id}>
         <Image className='swiper-image' src={item.sourceUrl} />
       </SwiperItem>
     })
-
-    return <View className='banner-section'>
-      <Swiper className='swiper-section' autoplay circular duration={500} indicatorActiveColor='#fff' indicatorColor='rgba(255, 255, 255, 0.5)' indicatorDots interval={5000}>
-        {images}
-      </Swiper>
-    </View>
   }
 
   renderAddress () {
@@ -93,537 +88,282 @@ class Index extends Component<PageOwnProps, PageState> {
     </View>
   }
 
-  renderContent () {
-    return <View className='d-flex overflow-hidden content-section'>
-      <View className='menu-section'>
-        <ScrollView className='d-flex flex-column menu-view' scrollY>
-          <View className='menu-item active'>
-            <View className='text'>人气Top</View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>大师咖啡</View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>小鹿茶精选</View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>瑞纳冰</View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>鲜榨果蔬汁</View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>经典饮品</View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>健康轻食</View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>瑞幸坚果</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>66折优惠</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>幸运小食</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>66折起</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>周边潮品</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>上新</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>幸运小食</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>66折起</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>周边潮品</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>上新</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>幸运小食</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>66折起</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>周边潮品</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>上新</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>幸运小食</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>66折起</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>周边潮品</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>上新</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>幸运小食</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>66折起</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>周边潮品</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>上新</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>幸运小食</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>66折起</Text>
-            </View>
-          </View>
-          <View className='menu-item'>
-            <View className='text'>周边潮品</View>
-            <View className='label' style='background: #D4660C'>
-              <Text style='color: #FFFFFF; background: #D4660C'>上新</Text>
-            </View>
-          </View>
-        </ScrollView>
-      </View>
-      <View className='d-flex product-section'>
-        <ScrollView className='d-flex flex-column product-view' scrollY>
-          <View className='product-content'>
-            <View className='product-head'>
-              <View className='d-flex flex-column head-text'>
-                <View className='d-flex align-items-center mr-3 title-section'>
-                  <Text className='title'>人气Top</Text>
-                </View>
-              </View>
-              <View className='title-hr'></View>
-            </View>
-            <View className='product-series'>拿铁系列</View>
+  renderMenu () {
+    const menus = [{
+      id: 1,
+      name: '人气Top'
+    }, {
+      id: 2,
+      name: '大师咖啡'
+    }, {
+      id: 3,
+      name: '小鹿茶精选'
+    }, {
+      id: 4,
+      name: '瑞纳冰'
+    }, {
+      id: 5,
+      name: '鲜榨果蔬汁'
+    }, {
+      id: 6,
+      name: '经典饮品'
+    }, {
+      id: 7,
+      name: '健康轻食'
+    }, {
+      id: 8,
+      name: '瑞幸坚果',
+      badge: '66折优惠'
+    }, {
+      id: 9,
+      name: '幸运小食',
+      badge: '66折起'
+    }, {
+      id: 10,
+      name: '周边潮品',
+      badge: '上新'
+    }]
 
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
-                </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
-                </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
-                </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
-                </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
-                </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
-                </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
-                </View>
-              </View>
-            </View>
+    return menus.map((item, key) => <View className={classNames('menu-item', {'active': !key})} key={item.id}>
+      <View className='text'>{item.name}</View>
+      {item.hasOwnProperty('badge') && <View className='label' style='background: #D4660C'>
+        <Text style='color: #FFFFFF; background: #D4660C'>{item.badge}</Text>
+      </View>}
+    </View>)
+  }
 
+  renderProduct () {
+    return <View className='product-content'>
+          <View className='product-head'>
+            <View className='d-flex flex-column head-text'>
+              <View className='d-flex align-items-center mr-3 title-section'>
+                <Text className='title'>人气Top</Text>
+              </View>
+              <View className='d-flex align-items-center subtitle-section'>
+                <Text className='subtitle'>描述信息</Text>
+              </View>
+            </View>
+            <View className='title-hr'></View>
           </View>
-          <View className='product-content'>
-            <View className='product-head'>
-              <View className='d-flex flex-column head-text'>
-                <View className='d-flex align-items-center mr-3 title-section'>
-                  <Text className='title'>人气Top</Text>
-                </View>
-                <View className='d-flex align-items-center subtitle-section'>
-                  <Text className='subtitle'>描述信息</Text>
-                </View>
-              </View>
-              <View className='title-hr'></View>
-            </View>
-            <View className='product-series'>拿铁系列</View>
+          <View className='product-series'>拿铁系列</View>
 
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
+          <View className='product-item'>
+            <View className='product-img-section'>
+              <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
+              <View className='product-disc'>充2赠1</View>
+            </View>
+            <View className='product-info'>
+              <View className='d-flex justify-content-between align-items-center product-title'>
+                <Text className='product-name'>椰风灵感拿铁</Text>
+                <View className='product-tag'>
+                  <AtTag 
+                    type='primary'
+                    size='small'
+                    customStyle='background: red; color: #fff'
+                  >
+                    限定
+                  </AtTag>
                 </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
+              </View>
+              <Text className='product-ename'>Coconut Cake Lattle</Text>
+              <View className='d-flex justify-ciontent-between product-bottom'>
+                <View className='product-price'>
+                  <Text className='after'>
+                    <Text className='unit'>￥</Text>17
+                  </Text>
+                  <Text className='before'>￥27</Text>
+                </View>
+                <View>
+                  <View className='product-add'></View>
                 </View>
               </View>
             </View>
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
-                </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
-                </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
-                </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
-                </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View className='product-item'>
-              <View className='product-img-section'>
-                <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
-                <View className='product-disc'>充2赠1</View>
-              </View>
-              <View className='product-info'>
-                <View className='d-flex justify-content-between align-items-center product-title'>
-                  <Text className='product-name'>椰风灵感拿铁</Text>
-                  <View className='product-tag'>
-                    <AtTag 
-                      type='primary'
-                      size='small'
-                      customStyle='background: red; color: #fff'
-                    >
-                      限定
-                    </AtTag>
-                  </View>
-                </View>
-                <Text className='product-ename'>Coconut Cake Lattle</Text>
-                <View className='d-flex justify-ciontent-between product-bottom'>
-                  <View className='product-price'>
-                    <Text className='after'>
-                      <Text className='unit'>￥</Text>17
-                    </Text>
-                    <Text className='before'>￥27</Text>
-                  </View>
-                  <View>
-                    <View className='product-add'></View>
-                  </View>
-                </View>
-              </View>
-            </View>
-
           </View>
-        </ScrollView>
-      </View>
-    </View>
+          <View className='product-item'>
+            <View className='product-img-section'>
+              <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
+              <View className='product-disc'>充2赠1</View>
+            </View>
+            <View className='product-info'>
+              <View className='d-flex justify-content-between align-items-center product-title'>
+                <Text className='product-name'>椰风灵感拿铁</Text>
+                <View className='product-tag'>
+                  <AtTag 
+                    type='primary'
+                    size='small'
+                    customStyle='background: red; color: #fff'
+                  >
+                    限定
+                  </AtTag>
+                </View>
+              </View>
+              <Text className='product-ename'>Coconut Cake Lattle</Text>
+              <View className='d-flex justify-ciontent-between product-bottom'>
+                <View className='product-price'>
+                  <Text className='after'>
+                    <Text className='unit'>￥</Text>17
+                  </Text>
+                  <Text className='before'>￥27</Text>
+                </View>
+                <View>
+                  <View className='product-add'></View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View className='product-item'>
+            <View className='product-img-section'>
+              <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
+              <View className='product-disc'>充2赠1</View>
+            </View>
+            <View className='product-info'>
+              <View className='d-flex justify-content-between align-items-center product-title'>
+                <Text className='product-name'>椰风灵感拿铁</Text>
+                <View className='product-tag'>
+                  <AtTag 
+                    type='primary'
+                    size='small'
+                    customStyle='background: red; color: #fff'
+                  >
+                    限定
+                  </AtTag>
+                </View>
+              </View>
+              <Text className='product-ename'>Coconut Cake Lattle</Text>
+              <View className='d-flex justify-ciontent-between product-bottom'>
+                <View className='product-price'>
+                  <Text className='after'>
+                    <Text className='unit'>￥</Text>17
+                  </Text>
+                  <Text className='before'>￥27</Text>
+                </View>
+                <View>
+                  <View className='product-add'></View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View className='product-item'>
+            <View className='product-img-section'>
+              <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
+              <View className='product-disc'>充2赠1</View>
+            </View>
+            <View className='product-info'>
+              <View className='d-flex justify-content-between align-items-center product-title'>
+                <Text className='product-name'>椰风灵感拿铁</Text>
+                <View className='product-tag'>
+                  <AtTag 
+                    type='primary'
+                    size='small'
+                    customStyle='background: red; color: #fff'
+                  >
+                    限定
+                  </AtTag>
+                </View>
+              </View>
+              <Text className='product-ename'>Coconut Cake Lattle</Text>
+              <View className='d-flex justify-ciontent-between product-bottom'>
+                <View className='product-price'>
+                  <Text className='after'>
+                    <Text className='unit'>￥</Text>17
+                  </Text>
+                  <Text className='before'>￥27</Text>
+                </View>
+                <View>
+                  <View className='product-add'></View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View className='product-item'>
+            <View className='product-img-section'>
+              <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
+              <View className='product-disc'>充2赠1</View>
+            </View>
+            <View className='product-info'>
+              <View className='d-flex justify-content-between align-items-center product-title'>
+                <Text className='product-name'>椰风灵感拿铁</Text>
+                <View className='product-tag'>
+                  <AtTag 
+                    type='primary'
+                    size='small'
+                    customStyle='background: red; color: #fff'
+                  >
+                    限定
+                  </AtTag>
+                </View>
+              </View>
+              <Text className='product-ename'>Coconut Cake Lattle</Text>
+              <View className='d-flex justify-ciontent-between product-bottom'>
+                <View className='product-price'>
+                  <Text className='after'>
+                    <Text className='unit'>￥</Text>17
+                  </Text>
+                  <Text className='before'>￥27</Text>
+                </View>
+                <View>
+                  <View className='product-add'></View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View className='product-item'>
+            <View className='product-img-section'>
+              <Image className='product-img' src='https://img03.luckincoffeecdn.com/group1/M01/41/50/CtQLPF4S19KAdCZKAADX0W82LpU856.jpg' />
+              <View className='product-disc'>充2赠1</View>
+            </View>
+            <View className='product-info'>
+              <View className='d-flex justify-content-between align-items-center product-title'>
+                <Text className='product-name'>椰风灵感拿铁</Text>
+                <View className='product-tag'>
+                  <AtTag 
+                    type='primary'
+                    size='small'
+                    customStyle='background: red; color: #fff'
+                  >
+                    限定
+                  </AtTag>
+                </View>
+              </View>
+              <Text className='product-ename'>Coconut Cake Lattle</Text>
+              <View className='d-flex justify-ciontent-between product-bottom'>
+                <View className='product-price'>
+                  <Text className='after'>
+                    <Text className='unit'>￥</Text>17
+                  </Text>
+                  <Text className='before'>￥27</Text>
+                </View>
+                <View>
+                  <View className='product-add'></View>
+                </View>
+              </View>
+            </View>
+          </View>
+
+        </View>
   }
 
   render () {
     return (
       <View className='d-flex flex-column menu'>
-        {this.renderBanner()}
+        <View className='banner-section'>
+          <Swiper className='swiper-section' autoplay circular duration={500} indicatorActiveColor='#fff' indicatorColor='rgba(255, 255, 255, 0.5)' indicatorDots interval={5000}>
+            {this.renderBanner()}
+          </Swiper>
+        </View>
         {this.renderAddress()}
-        {this.renderContent()}
+        <View className='d-flex overflow-hidden content-section'>
+          <View className='menu-section'>
+            <ScrollView className='d-flex flex-column menu-view' scrollY>
+              {this.renderMenu()}
+            </ScrollView>
+          </View>
+          <View className='d-flex product-section'>
+            <ScrollView className='d-flex flex-column product-view' scrollY>
+              {this.renderProduct()}
+            </ScrollView>
+          </View>
+        </View>
       </View>
     )
   }
