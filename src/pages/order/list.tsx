@@ -50,11 +50,12 @@ class Index extends Component<PageOwnProps, PageState>  {
 
   handleTabSwitch () {
     const query = Taro.createSelectorQuery()
-    query.select('.tab-switch').boundingClientRect()
+    query.select('.tab-switch').boundingClientRect().in(this.$scope)
     query.exec(item => {
-      const height = Taro.pxTransform(item[0].top + item[0].height)
+      const height = item[0].top + item[0].height
+      console.log(item, height)
       this.setState({
-        height: parseInt(height.replace('rpx', '')) + 20
+        height
       })
     })
   }

@@ -33,6 +33,10 @@ export default class SegmentedControl extends AtComponent<PageOwnProps, PageStat
     onClick: () => {}
   }
 
+  componentWillMount () {
+ 
+  }
+
   handleClick () {
     if (this.props.disabled) return
     this.props.onClick(...arguments)
