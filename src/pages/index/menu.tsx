@@ -63,11 +63,16 @@ class Index extends Component<PageOwnProps, PageState> {
 
   renderBanner () {
     const { banners } = this.state
-    return banners.map((item: any) => {
-      return <SwiperItem key={item.id}>
-        <Image className='swiper-image' src={item.sourceUrl} />
-      </SwiperItem>
-    })
+
+    return <View className='banner-section'>
+      <Swiper className='swiper-section' autoplay circular duration={500} indicatorActiveColor='#fff' indicatorColor='rgba(255, 255, 255, 0.5)' indicatorDots interval={5000}>
+        {banners.map((item: any) => {
+          return <SwiperItem key={item.id}>
+            <Image className='swiper-image' src={item.sourceUrl} />
+          </SwiperItem>
+        })}
+      </Swiper>
+    </View>
   }
 
   renderAddress () {
@@ -346,11 +351,7 @@ class Index extends Component<PageOwnProps, PageState> {
   render () {
     return (
       <View className='d-flex flex-column menu'>
-        <View className='banner-section'>
-          <Swiper className='swiper-section' autoplay circular duration={500} indicatorActiveColor='#fff' indicatorColor='rgba(255, 255, 255, 0.5)' indicatorDots interval={5000}>
-            {this.renderBanner()}
-          </Swiper>
-        </View>
+        {this.renderBanner()}
         {this.renderAddress()}
         <View className='d-flex overflow-hidden content-section'>
           <View className='menu-section'>
