@@ -1,0 +1,27 @@
+.at-segmented-control {
+  background: #6d86c4;
+  border-radius: 32rpx;
+}
+
+.at-segmented-control__item {
+  color: #fff;
+  border: none !important;
+  position: relative;
+  padding: 2rpx;
+  background-color: #6d86c4;
+}
+
+.at-segmented-control__item-text {
+  padding: 10rpx 0;
+  border-radius: 32rpx;
+  transition: all .3s;
+}
+
+.at-segmented-control__item--active {
+
+  .at-segmented-control__item-text {
+    color: #6d86c4;
+    background: #fff;
+    font-family: PingFangSC-Medium;
+  }
+}

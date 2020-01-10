@@ -1,0 +1,28 @@
+.empty-list {
+  
+  .empty-img {
+    background: url(https://static.luckincoffeecdn.com/mini/images/list/img_oreder_list_empty.png) no-repeat center 90%;
+    background-size: 140px 146px;
+    height: 300rpx;
+    margin-top: 120rpx;
+  }
+
+  .empty-tips {
+    color: #666;
+    margin-bottom: 60rpx;
+    text-align: center;
+    font-size: 26rpx;
+  }
+
+  .empty-btn {
+    color: #fff;
+    border-radius: 42rpx;
+    width: 540rpx;
+    font-size: 28rpx;
+    margin: 0rpx auto;
+    background-color: #6d86c4;
+    height: 10;
+    line-height: 80rpx;
+    letter-spacing: 4rpx;
+  }
+}
