@@ -24,5 +24,9 @@
     line-height: 80rpx;
     letter-spacing: 4rpx;
     border: 0;
+
+    &::after {
+      border: 0;
+    }
   }
 }
