@@ -14,7 +14,8 @@ export default class Center extends Component {
    */
   config: Config = {
     navigationBarTitleText: '个人中心',
-    navigationStyle: 'custom'
+    navigationStyle: 'custom',
+    disableScroll: true
   }
 
   componentWillMount () { }
